@@ -1,14 +1,24 @@
-// create 16 blank divs in html
 const container = document.querySelector(".container")
 const resetButton = document.querySelector("#reset");
 
-// default 16x16 grid
+function randomRGB() {
+    const randomBetween = (min, max) => Math.floor(Math.random() * (max - min + 1));
+    return randomBetween(0, 255);
+}
 
+// default 16x16 grid
 for (let i = 0; i < (16 * 16); i++) {
     const box = document.createElement("div");
     box.classList.add("box");
+
+    const r = randomRGB();
+    const g = randomRGB();
+    const b = randomRGB();
+    let shadeFactor = 1;
+
     box.addEventListener("mouseover", function(e) {
-        e.target.style.backgroundColor = 'black';
+        e.target.style.backgroundColor = `rgb(${r * shadeFactor}, ${g * shadeFactor}, ${b * shadeFactor})`;
+        shadeFactor = shadeFactor - 0.1;
     });
         
     container.appendChild(box);
@@ -46,11 +56,19 @@ newGrid.addEventListener("click", function() {
         for (let i = 0; i < (boxNum * boxNum); i++) {
             const box = document.createElement("div");
             box.classList.add("box");
+
+            // rainbow trail and darken by 10% each mouseover
+            let r = randomRGB();
+            let g = randomRGB();
+            let b = randomRGB(); 
+            let shadeFactor = 1;
+
             box.addEventListener("mouseover", function(e) {
-                e.target.style.backgroundColor = 'black';
+                e.target.style.backgroundColor = `rgb(${r * shadeFactor}, ${g * shadeFactor}, ${b * shadeFactor})`;
+                shadeFactor = shadeFactor - 0.1;
             });
+   
             container.appendChild(box);
-        
             clearGridButton(box);
 
         }

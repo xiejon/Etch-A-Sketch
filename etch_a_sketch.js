@@ -11,6 +11,7 @@ for (let i = 0; i < (16 * 16); i++) {
     const box = document.createElement("div");
     box.classList.add("box");
 
+    // rainbow trail and darken by 10% each mouseover
     const r = randomRGB();
     const g = randomRGB();
     const b = randomRGB();
